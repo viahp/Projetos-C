@@ -1,0 +1,118 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <conio.h>
+#include <windows.h>
+
+void cadastrarPessoa(){
+	FILE *cadastrarPessoas;
+	char espera[1];
+	char pessoa[25];
+    espera[0] = getche();
+    fflush(stdin);
+	cadastrarPessoas = fopen("pessoas","a+");
+
+	printf("\n\t\t\t\t\t\tDigite o nome da pessoa");
+	printf("\nPessoa : ");
+	gets(pessoa);
+	fprintf(cadastrarPessoas,"%s|\n",pessoa);
+	
+	system("cls");
+	fflush(stdin);
+}
+void cadastrarResidencial(){
+    char ter[25];
+   
+	FILE *cadastrarTelefones;
+	cadastrarTelefones = fopen("telefones","a+");
+
+		printf("\n\t\t\t\t\t\tDigite o número residêncial");
+		printf("\nTelefone : ");
+		gets(ter);
+		fprintf(cadastrarTelefones,"\n Residêncial - %s|",ter);
+    	fflush(stdin);
+
+
+}
+
+void cadastrarCelular(){
+	char celular[1];
+	char celul[25];
+	
+	FILE *cadastrarCelulares;
+	cadastrarCelulares = fopen("celulares","a+");
+    printf("\n\t\t\t\t\t\tDigite o número celular"); 
+    printf("\nCelular : ");
+    gets(celul);
+    fprintf(cadastrarCelulares,"\nCelular - %s|",celul);
+    fflush(stdin);
+   
+}
+
+void consultarTodos(){
+	
+	FILE *consultarPessoas;
+	char maximo[44];
+	int total = 44;
+	consultarPessoas = fopen("pessoas","r");
+	for(int i = 0; i<=5; i++){
+	
+	fgets(maximo,total,consultarPessoas);
+	printf("\nPessoa[ %d ] :  ",i);
+	printf("%s",maximo);
+	total+=44;
+	}
+}
+
+
+
+int main(){
+	int opcao;
+	do{
+		
+ 
+	setlocale(LC_ALL,"PORTUGUESE");	
+    system("color F0");
+    printf("\n1 - CADASTRAR NOVO CLIENTE");
+    printf("\n2 - LISTAR TODOS OS CLIENTES");
+    printf("\n3 - SAIR");
+   	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t\t\t\t\t\t\t\t\t\t\t\t\tAKASP 1.0");
+   	printf("\n\nOPÇÃO : ");
+    scanf("%d",&opcao);
+    fflush(stdin);
+    
+
+    switch(opcao){
+	case 1:
+    	MessageBox(0,"Cadastrar uma pessoa","CADASTRO",MB_OK);
+    	system("cls");
+    	cadastrarPessoa();
+    	system("cls");
+    	MessageBox(0,"Digite o número residêncial ","CADASTRO",MB_OK);
+    	cadastrarResidencial();
+    	system("cls");
+    	MessageBox(0,"Cadastrar o número celular","CADASTRO",MB_OK);
+    	cadastrarCelular();
+    	system("cls");
+    
+		MessageBox(0,"Cadastrado!","Sucesso",MB_OK);
+	
+
+
+        
+    	break;
+    case 2:
+    	consultarTodos();
+    	char a = getche();
+    	break;
+    	
+   
+    	
+	}
+	}while(opcao!=3);
+
+  
+
+
+	
+}
